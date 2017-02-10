@@ -20,7 +20,7 @@ public class MySuperTest {
 
         caps.setBrowserName(System.getenv("SELENIUM_BROWSER"));
         caps.setVersion(System.getenv("SELENIUM_VERSION"));
-        caps.setCapability(CapabilityType.PLATFORM, "Windows 7");
+        caps.setCapability(CapabilityType.PLATFORM, System.getenv("SELENIUM_PLATFORM"));
 
 
         try {
