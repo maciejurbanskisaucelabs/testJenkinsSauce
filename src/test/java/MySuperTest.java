@@ -25,6 +25,8 @@ public class MySuperTest {
 
         try {
             driver = new RemoteWebDriver(new URL(SAUCE_URL),caps);
+            printSessionId();
+
             driver.get("https://google.com");
 
             System.out.println(driver.getTitle());
@@ -33,5 +35,13 @@ public class MySuperTest {
             e.printStackTrace();
         }
 
+    }
+
+
+    private void printSessionId() {
+
+        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",
+                (((RemoteWebDriver) driver).getSessionId()).toString(), "testJenkinsCaps");
+        System.out.println(message);
     }
 }
