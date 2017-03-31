@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -30,6 +31,7 @@ public class MySuperTest {
             driver.get("https://google.com");
 
             System.out.println(driver.getTitle());
+            Assert.assertTrue("Title is Google",driver.getTitle().equals("Google"));
             driver.quit();
         } catch (MalformedURLException e) {
             e.printStackTrace();
