@@ -13,7 +13,17 @@ public class MySuperTest {
     private final String SAUCE_USERNAME = System.getenv("SAUCE_USERNAME");
     private final String SAUCE_ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
     private final String SAUCE_URL = String.format("https://%s:%s@ondemand.saucelabs.com:443/wd/hub",SAUCE_USERNAME,SAUCE_ACCESS_KEY);
-
+    private String buildTag;
+    
+    @BeforeClass
+    public static void setupClass() {
+        //If available add build tag. When running under Jenkins BUILD_TAG is automatically set.
+        //You can set this manually on manual runs.
+        buildTag = System.getenv("BUILD_TAG");
+        if (buildTag == null) {
+            buildTag = System.getenv("SAUCE_BUILD_NAME");
+        }
+    }
 
     @Test
     public void testJenkinsCaps() {
@@ -23,6 +33,10 @@ public class MySuperTest {
         caps.setVersion(System.getenv("SELENIUM_VERSION"));
         caps.setCapability(CapabilityType.PLATFORM, System.getenv("SELENIUM_PLATFORM"));
         caps.setCapability("deviceOrientation", System.getenv("SELENIUM_DEVICE_ORIENTATION"));
+        
+        if (buildTag != null) {
+            caps.setCapability("build", buildTag);
+        }
 
 
         try {
