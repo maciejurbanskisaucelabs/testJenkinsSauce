@@ -1,4 +1,5 @@
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -16,7 +17,7 @@ public class MySuperTest {
     private String buildTag;
     
     @BeforeClass
-    public static void setupClass() {
+    public void setupClass() {
         //If available add build tag. When running under Jenkins BUILD_TAG is automatically set.
         //You can set this manually on manual runs.
         buildTag = System.getenv("BUILD_TAG");
