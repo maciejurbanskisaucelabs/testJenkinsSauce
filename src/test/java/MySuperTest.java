@@ -18,13 +18,6 @@ public class MySuperTest {
     
     @BeforeClass
     public static void setupClass() {
-        //If available add build tag. When running under Jenkins BUILD_TAG is automatically set.
-        //You can set this manually on manual runs.
-        buildTag = System.getenv("BUILD_TAG");
-        if (buildTag == null) {
-            buildTag = System.getenv("SAUCE_BUILD_NAME");
-        }
-    }
 
     @Test
     public void testJenkinsCaps() {
@@ -35,11 +28,6 @@ public class MySuperTest {
         caps.setCapability(CapabilityType.PLATFORM, System.getenv("SELENIUM_PLATFORM"));
         caps.setCapability("deviceOrientation", System.getenv("SELENIUM_DEVICE_ORIENTATION"));
         
-        if (buildTag != null) {
-            caps.setCapability("build", buildTag);
-        }
-
-
         try {
             driver = new RemoteWebDriver(new URL(SAUCE_URL),caps);
             printSessionId();
