@@ -19,6 +19,7 @@ public class MySuperTest {
     @BeforeClass
     public static void setupClass() {
 
+    }
     @Test
     public void testJenkinsCaps() {
         DesiredCapabilities caps = new DesiredCapabilities();
