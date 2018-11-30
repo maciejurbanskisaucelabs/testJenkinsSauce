@@ -42,7 +42,7 @@ public class MySuperTest {
 
         try {
             driver = new RemoteWebDriver(new URL(SAUCE_URL),caps);
-            printSessionId();
+            printSessionId("testJenkinsCaps");
 
             driver.get("https://google.com");
 
@@ -54,7 +54,7 @@ public class MySuperTest {
 
     }
     
-        @Test
+    @Test
     public void testJenkinsCaps2() {
         DesiredCapabilities caps = new DesiredCapabilities();
 
@@ -70,7 +70,7 @@ public class MySuperTest {
 
         try {
             driver = new RemoteWebDriver(new URL(SAUCE_URL),caps);
-            printSessionId();
+            printSessionId("testJenkinsCaps2");
 
             driver.get("https://google.com");
 
@@ -83,10 +83,10 @@ public class MySuperTest {
     }
 
 
-    private void printSessionId() {
+    private void printSessionId(String testName) {
 
         String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",
-                (((RemoteWebDriver) driver).getSessionId()).toString(), "testJenkinsCaps");
+                (((RemoteWebDriver) driver).getSessionId()).toString(), testName);
         System.out.println(message);
     }
 }
