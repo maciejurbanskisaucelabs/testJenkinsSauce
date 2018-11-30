@@ -53,6 +53,34 @@ public class MySuperTest {
         }
 
     }
+    
+        @Test
+    public void testJenkinsCaps2() {
+        DesiredCapabilities caps = new DesiredCapabilities();
+
+        caps.setBrowserName(System.getenv("SELENIUM_BROWSER"));
+        caps.setVersion(System.getenv("SELENIUM_VERSION"));
+        caps.setCapability(CapabilityType.PLATFORM, System.getenv("SELENIUM_PLATFORM"));
+        caps.setCapability("deviceOrientation", System.getenv("SELENIUM_DEVICE_ORIENTATION"));
+        
+        if (buildTag != null) {
+            caps.setCapability("build", buildTag);
+        }
+
+
+        try {
+            driver = new RemoteWebDriver(new URL(SAUCE_URL),caps);
+            printSessionId();
+
+            driver.get("https://google.com");
+
+            Assert.assertTrue("Title is Google",driver.getTitle().equals("Google"));
+            driver.quit();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
     private void printSessionId() {
