@@ -32,7 +32,7 @@ public class MySuperTest {
 
         caps.setBrowserName(System.getenv("SELENIUM_BROWSER"));
         caps.setVersion(System.getenv("SELENIUM_VERSION"));
-        caps.setCapability(CapabilityType.PLATFORM, System.getenv("SELENIUM_PLATFORM"));
+        caps.setCapability("platform", System.getenv("SELENIUM_PLATFORM"));
         caps.setCapability("deviceOrientation", System.getenv("SELENIUM_DEVICE_ORIENTATION"));
         
         if (buildTag != null) {
