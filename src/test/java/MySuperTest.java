@@ -34,7 +34,9 @@ public class MySuperTest {
         caps.setVersion(System.getenv("SELENIUM_VERSION"));
         caps.setCapability(CapabilityType.PLATFORM, System.getenv("SELENIUM_PLATFORM"));
         caps.setCapability("deviceOrientation", System.getenv("SELENIUM_DEVICE_ORIENTATION"));
-        
+
+        caps.setCapability("name", "Test name");
+
         if (buildTag != null) {
             caps.setCapability("build", buildTag);
         }
